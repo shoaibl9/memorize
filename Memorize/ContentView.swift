@@ -23,10 +23,39 @@ struct ContentView: View {
                         }
                 }
             }
-            
+            HStack {
+                halloween
+                thanksgiving
+                christmas
+            }
         }
         .foregroundColor(.red)
         .padding(.horizontal)
+
+    }
+    
+    var halloween: some View {
+        Button {
+            print("test")
+        } label: {
+            Image(systemName: "plus.circle")
+        }
+    }
+    
+    var thanksgiving: some View {
+        Button {
+            print("test")
+        } label: {
+            Image(systemName: "plus.circle")
+        }
+    }
+    
+    var christmas: some View {
+        Button {
+            print("test")
+        } label: {
+            Image(systemName: "plus.circle")
+        }
     }
 }
 
