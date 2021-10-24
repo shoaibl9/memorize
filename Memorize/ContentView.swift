@@ -13,7 +13,10 @@ struct ContentView: View {
     
     var body: some View {
         ScrollView {
-            Text("Memorize Game").font(.largeTitle).foregroundColor(.black)
+            Text("Memorize Game")
+                .font(.largeTitle)
+                .fontWeight(.thin)
+                .foregroundColor(.black)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                 ForEach (viewModel.cards) { card in
                     CardView(card: card)
@@ -25,7 +28,9 @@ struct ContentView: View {
             }
             HStack {
                 halloween
+                Spacer()
                 thanksgiving
+                Spacer()
                 christmas
             }
         }
@@ -36,25 +41,43 @@ struct ContentView: View {
     
     var halloween: some View {
         Button {
-            print("test")
+            viewModel.newGame("halloween")
         } label: {
-            Image(systemName: "plus.circle")
+            ZStack {
+                Text("🎃")
+                    .font(.largeTitle)
+                Image(systemName: "circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
         }
     }
     
     var thanksgiving: some View {
         Button {
-            print("test")
+            viewModel.newGame("thanksgiving")
         } label: {
-            Image(systemName: "plus.circle")
+            ZStack {
+                Text("🦃")
+                    .font(.largeTitle)
+                Image(systemName: "circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
         }
     }
     
     var christmas: some View {
         Button {
-            print("test")
+            viewModel.newGame("christmas")
         } label: {
-            Image(systemName: "plus.circle")
+            ZStack {
+                Text("🎄")
+                    .font(.largeTitle)
+                Image(systemName: "circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
         }
     }
 }

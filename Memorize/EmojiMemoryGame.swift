@@ -9,15 +9,19 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
-    private static let emojis = ["🚂","🚀", "🚁", "🚜", "🚗", "🛵", "🚙", "🚑", "🚚", "🛻", "🏍", "🚍", "🛩", "🛴", "🛳", "🛺", "🏎", "🚔", "🚤", "🚠", "🚄", "🛫", "🚲", "🚐"]
+    private static let christmas = ["🎄","🎅🏽", "🤶🏼", "🧑🏽‍🎄"]
     
-    private static func createMemoryGame() -> MemoryGame<String> {
-        return MemoryGame<String>(numberOfPairsOfCards: 8) { pairIndex in
+    private static let thanksgiving = ["🦃","🥘", "🇹🇷", "🥄", "🥧"]
+    
+    private static let halloween = ["💀","👻", "🎃"]
+    
+    private static func createMemoryGame(emojis: Array<String>) -> MemoryGame<String> {
+        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { pairIndex in
             emojis[pairIndex]
         }
     }
     
-    @Published private var model: MemoryGame<String> = createMemoryGame()
+    @Published private var model: MemoryGame<String> = createMemoryGame(emojis: christmas)
         
     
     var cards: Array<MemoryGame<String>.Card> {
@@ -28,5 +32,15 @@ class EmojiMemoryGame: ObservableObject {
     
     func choose(_ card: MemoryGame<String>.Card) {
         model.choose(card)
+    }
+    
+    func newGame(_ mode: String) {
+        if (mode == "christmas") {
+            model = EmojiMemoryGame.createMemoryGame(emojis: EmojiMemoryGame.christmas)
+        } else if (mode == "halloween") {
+            model = EmojiMemoryGame.createMemoryGame(emojis: EmojiMemoryGame.halloween)
+        } else if (mode == "thanksgiving") {
+            model = EmojiMemoryGame.createMemoryGame(emojis: EmojiMemoryGame.thanksgiving)
+        }
     }
 }
